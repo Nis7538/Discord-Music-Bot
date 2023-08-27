@@ -10,6 +10,7 @@ from youtube_dl import YoutubeDL
 
 load_dotenv()
 
+
 class music(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
@@ -204,7 +205,6 @@ class music(commands.Cog):
             self.music_queue.pop(position - 1)
             await ctx.send("Track at position {} removed!!".format(position))
 
-
     @commands.command(name="queue", aliases=["q"], help="Displays the current songs in queue")
     async def queue(self, ctx):
         if self.is_present(ctx):
@@ -267,3 +267,7 @@ class music(commands.Cog):
             self.is_playing = False
             self.is_paused = False
             await self.vc.disconnect()
+
+
+async def setup(bot):
+    await bot.add_cog(music(bot))
